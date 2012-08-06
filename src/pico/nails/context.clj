@@ -1,8 +1,8 @@
 (ns pico.nails.context
-  (import
-    [java.io InputStreamReader OutputStreamWriter]
-    [java.lang SecurityException]
-    [com.martiansoftware.nailgun NGContext NGServer]))
+  (:import
+   [java.io InputStreamReader OutputStreamWriter]
+   [java.lang SecurityException]
+   [com.martiansoftware.nailgun NGContext NGServer]))
 
 (defn ^InputStreamReader get-*in*
   "Returns the client's stdin."

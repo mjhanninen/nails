@@ -1,7 +1,7 @@
 (ns pico.nails.server
-  (require
+  (:require
    [pico.nails.context :as context])
-  (import
+  (:import
    [com.martiansoftware.nailgun NGConstants NGServer]
    [java.lang Thread]
    [java.net InetAddress]))

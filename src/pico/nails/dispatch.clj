@@ -1,8 +1,8 @@
 (ns pico.nails.dispatch
-  (require
+  (:require
    [pico.nails.context :as context]
    [pico.nails.server :as server])
-  (import
+  (:import
    [com.martiansoftware.nailgun Alias NGContext])
   (:gen-class
    :methods [#^{:static true} [nailMain [com.martiansoftware.nailgun.NGContext] void]]))
