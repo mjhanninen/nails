@@ -4,9 +4,9 @@ Add Some Nails to Your REPL
 Clojure REPL is a powerful thing and so is the Unix command line. What if you
 could mix these two together like this?
 
-    user> (require [pico.nails :as nails])
-    user> (nails/start)
-    user> (nails/add-nail :hello (fn [c] (println "Hello," (first (:args c)))))
+    user> (use 'pico.nails)
+    user> (start-nailgun)
+    user> (add-nail :hello (fn [c] (println "Hello," (first (:args c)))))
 
 and then on your Bash prompt:
 
@@ -33,17 +33,24 @@ Dependencies
 ------------
 
 *Nails* builds on the excellent Java tool *NailGun*. You need to install the
-*NailGun* client.  You can obtain the sources from the *NailGun*'s [project
-page](http://www.martiansoftware.com/nailgun/) and it takes about two minutes to
-build and deploy it.
+*NailGun* client binary. You can obtain the sources from the *NailGun*'s
+[project page](http://www.martiansoftware.com/nailgun/) and it takes about two
+minutes to build and deploy it. As it happens [Alex
+Osborne](https://github.com/ato) has made sources available on
+[GitHub](https://github.com/ato/nailgun) so building and installing is this
+simple:
+
+    $ git clone git://github.com/ato/nailgun.git
+    $ cd nailgun
+    $ make
+    $ ln -s $(pwd)/ng /path/to/bin/ng
 
 Usage
 -----
 
-(Once this project has been deployed for the first time) add the
-following dependency to your `project.clj`:
+Add the following dependency to your `project.clj`:
 
-    :dependencies [[org.clojars.pico/nails "0.1.0-SNAPSHOT"]]
+    :dependencies [[org.clojars.pico/nails "0.1.0"]]
 
 License
 -------
