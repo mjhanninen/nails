@@ -25,7 +25,7 @@
   []
   (:server @@server-instance))
 
-(defn start
+(defn start-nailgun
   "Start a NailGun server."
   [& args]
   (let [p (promise)]
@@ -35,10 +35,10 @@
       (let [{:keys [addr port]} @@server-instance]
         (println (format "Server already running on %s:%s." addr port))))))
 
-(defn stop
+(defn stop-nailgun
   "Stop a NailGun server."
   ([]
-     (stop false))
+     (stop-nailgun false))
   ([exit-vm]
      (if-let [s @server-instance]
        (if (compare-and-set! server-instance s nil)
