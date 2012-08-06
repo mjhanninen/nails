@@ -5,4 +5,5 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.4.0"]
                  [com.martiansoftware/nailgun "0.7.1"]]
-  :repositories {"ooo-maven-repo" "http://ooo-maven.googlecode.com/hg/repository"})
+  :repositories {"ooo-maven-repo" "http://ooo-maven.googlecode.com/hg/repository"}
+  :aot [pico.nails.dispatch])
