@@ -7,13 +7,13 @@ MD_PRODUCTS=$(patsubst %.md,$(HTML_DIR)/%.html,$(wildcard *.md))
 
 .PHONY: all clean dirs help html markdown
 
+all: html
+
 help:
 	@echo "Please use \`make <target>\` where <target> is one of"
 	@echo "  all    to make all products"
 	@echo "  html   to generate HTML documentation"
 	@echo "  clean  to clean up project directories"
-
-all: html
 
 html: markdown
 
