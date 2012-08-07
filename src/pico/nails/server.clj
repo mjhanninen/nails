@@ -6,18 +6,22 @@
    [java.lang Thread]
    [java.net InetAddress]))
 
-;;; TODO: Thread safety. Currently we have taken only minimal measures
-;;; to address the thread safety issues.
-
-(def server-instance (atom nil))
-
-(defn new-server
+(defn- new-server
+  "Creates a new `NGServer` instance and starts it in a separate
+  thread. Returns a map with the following entries: `:addr`, `:port`,
+  `:server`, and `:thread`."
   [& {:keys [addr port]
       :or {addr "localhost" port NGConstants/DEFAULT_PORT}}]
   {:pre [(string? addr) (integer? port)]}
   (let [server (NGServer. (InetAddress/getByName addr) port)
         thread (doto (Thread. server) (.start))]
     {:addr addr, :port port, :server server, :thread thread}))
+
+(def ^{:doc "An atom containing either `nil` when the server is not
+            running or a map containing the server instance with some
+            other related information."
+       :private true}
+  server-instance (atom nil))
 
 (defn get-server
   "Returns the current `NGServer` instance or `nil` if none is
