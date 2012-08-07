@@ -40,14 +40,14 @@
         (println (format "NailGun server started on %s:%s." addr port))))))
 
 (defn stop-nailgun
-  "Stop a NailGun server."
+  "Stop the currently running NailGun server."
   ([]
      (stop-nailgun false))
-  ([exit-vm]
+  ([exit-vm?]
      (locking server-instance
        (if-let [{:keys [server]} @server-instance]
          (do
-           (.shutdown server (boolean exit-vm))
+           (.shutdown server (boolean exit-vm?))
            (reset! server-instance nil)
            (println "Server stopped."))
          (println "No server running.")))))
