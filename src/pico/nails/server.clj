@@ -23,27 +23,27 @@
   "Returns the current `NGServer` instance or `nil` if none is
   present."
   []
-  (:server @@server-instance))
+  (locking server-instance
+    (:server @server-instance)))
 
 (defn start-nailgun
   "Start a NailGun server."
   [& args]
-  (let [p (promise)]
-    (if (compare-and-set! server-instance nil p)
-      (let [{:keys [addr port]} (deref (deliver p (apply new-server args)))]
-        (println (format "NailGun server started on %s:%s." addr port)))
-      (let [{:keys [addr port]} @@server-instance]
-        (println (format "Server already running on %s:%s." addr port))))))
+  (locking server-instance
+    (if-let [{:keys [addr port]} @server-instance]
+      (println (format "Server already running on %s:%s." addr port))
+      (let [{:keys [addr port]} (reset! server-instance (apply new-server args))]
+        (println (format "NailGun server started on %s:%s." addr port))))))
 
 (defn stop-nailgun
   "Stop a NailGun server."
   ([]
      (stop-nailgun false))
   ([exit-vm]
-     (if-let [s @server-instance]
-       (if (compare-and-set! server-instance s nil)
-         (let [{:keys [server]} @s]
+     (locking server-instance
+       (if-let [{:keys [server]} @server-instance]
+         (do
            (.shutdown server (boolean exit-vm))
+           (reset! server-instance nil)
            (println "Server stopped."))
-         (println "Failed stop server. Try again."))
-       (println "No server running."))))
+         (println "No server running.")))))
