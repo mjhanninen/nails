@@ -64,7 +64,7 @@ build and install the client is:
 If you are using *Nails* with a Leiningen project, you just need to add the
 following dependency to your `project.clj`:
 
-    :dependencies [[org.clojars.pico/nails "0.1.0"]]
+    :dependencies [[org.clojars.pico/nails "0.1.1"]]
 
 Similarly with a Maven project you just need to add the following repository
 and dependency to your `pom.xlm`:
@@ -77,18 +77,18 @@ and dependency to your `pom.xlm`:
     <dependency>
       <groupId>org.clojars.pico</groupId>
       <artifactId>nails</artifactId>
-      <version>0.1.0</version>
+      <version>0.1.1</version>
     </dependency>
 
 In both cases the build tool's dependency manager should take care of
 downloading direct and indirect dependencies.
 
 If neither of the above fits your bill, you can always download
-[nails-0.1.0.jar][njar] and [nailgun-0.7.1.jar][ngjar] by hand and ensure that
+[nails-0.1.1.jar][njar] and [nailgun-0.7.1.jar][ngjar] by hand and ensure that
 they are on your `CLASSPATH`.
 
-[njar]: http://clojars.org/repo/org/clojars/pico/nails/0.1.0/nails-0.1.0.jar
-    "clojars.org repository - nails-0.1.0.jar"
+[njar]: http://clojars.org/repo/org/clojars/pico/nails/0.1.1/nails-0.1.1.jar
+    "clojars.org repository - nails-0.1.1.jar"
 
 [ngjar]: http://ooo-maven.googlecode.com/hg/repository/com/martiansoftware/nailgun/0.7.1/nailgun-0.7.1.jar
     "ooo-maven repository - nailgun-0.7.1.jar"
