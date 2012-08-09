@@ -6,4 +6,4 @@
   :dependencies [[org.clojure/clojure "1.4.0"]
                  [com.martiansoftware/nailgun "0.7.1"]]
   :repositories {"ooo-maven-repo" "http://ooo-maven.googlecode.com/hg/repository"}
-  :aot [pico.nails.dispatch])
+  :aot [pico.nails.server])

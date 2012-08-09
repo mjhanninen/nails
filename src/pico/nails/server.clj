@@ -115,14 +115,14 @@
 
 (defn- dispatch
   [cmd ctx]
-  ((or (get-in dispatch-table [(keyword cmd) :fn])
+  ((or (get-in @dispatch-table [(keyword cmd) :fn])
        (tools/error-nail (format "nail %s not found" cmd)))
    ctx))
 
 (defn- nail-fn
   [c]
   (let [{:keys [cmd args]} c]
-    (if (= cmd "pico.nails.dispatch")
+    (if (= cmd "pico.nails.server")
       (dispatch (first args) (assoc c :args (vec (rest args))))
       (dispatch cmd c))))
 
