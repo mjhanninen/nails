@@ -6,6 +6,6 @@
 
 (def stop-nailgun pico.nails.server/stop-nailgun)
 
-(def add-nail pico.nails.dispatch/add-nail)
+(def add-nail pico.nails.server/add-nail)
 
-(def remove-nail pico.nails.dispatch/remove-nail)
+(def remove-nail pico.nails.server/remove-nail)
