@@ -1,11 +1,11 @@
 (ns pico.nails
   (:require
-   [pico.nails dispatch server]))
+   [pico.nails.server :as server]))
 
-(def start-nailgun pico.nails.server/start-nailgun)
+(def start-nailgun server/start-nailgun)
 
-(def stop-nailgun pico.nails.server/stop-nailgun)
+(def stop-nailgun server/stop-nailgun)
 
-(def add-nail pico.nails.server/add-nail)
+(def add-nail server/add-nail)
 
-(def remove-nail pico.nails.server/remove-nail)
+(def remove-nail server/remove-nail)
