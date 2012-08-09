@@ -1,4 +1,4 @@
-(defproject org.clojars.pico/nails "0.1.1"
+(defproject org.clojars.pico/nails "0.1.2-SNAPSHOT"
   :description "Adds some nails to your REPL"
   :url "http://github.com/pico/nails"
   :license {:name "Eclipse Public License"
