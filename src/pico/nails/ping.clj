@@ -1,6 +1,6 @@
 (ns pico.nails.ping
-  (use pico.nails.context)
-  (import
+  (:use pico.nails.context)
+  (:import
     [com.martiansoftware.nailgun NGContext])
   (:gen-class
     :methods [#^{:static true} [nailMain [com.martiansoftware.nailgun.NGContext] void]]))
