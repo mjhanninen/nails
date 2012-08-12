@@ -16,6 +16,4 @@ To-Do
 - **Nail class generation:** Geneting a class that can be registered with a
   *NailGun* server is a bit awkward at the moment. (*low priority*)
 
-- **Thread safety** (*low priority*)
-
 - **Multiple NailGun instances** (*low priority*)
