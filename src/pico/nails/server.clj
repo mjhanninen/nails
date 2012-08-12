@@ -113,11 +113,68 @@
            (println "Server stopped."))
          (println "No server running.")))))
 
+(def
+  ^{:dynamic true
+    :doc "Bound to the NailGun server serving the nail."}
+  *nailgun-server*)
+
+(def
+  ^{:dynamic true
+    :doc "The client's address."}
+  *nailgun-client-address*)
+
+(def
+  ^{:dynamic true
+    :doc "The client's side port."}
+  *nailgun-client-port*)
+
+(def
+  ^{:dynamic true
+    :doc "The NailGun command issued on the client's side."}
+  *nailgun-command*)
+
+(def
+  ^{:dynamic true
+    :doc "A vector of the client's command line arguments."}
+  *nailgun-args*)
+
+(def
+  ^{:dynamic true
+    :doc "The client's present working directory."}
+  *nailgun-directory*)
+
+(def
+  ^{:dynamic true
+    :doc "The path separator on the client's system."}
+  *nailgun-separator*)
+
+(def
+  ^{:dynamic true
+    :doc "The client's environment variables in a map from variable names to
+  values. Both are strings."}
+  *nailgun-env*)
+
+(defn bind-context
+  "Binds `context` to dynamic vars and calls `f` in this dynamic scope."
+  [f context]
+  (binding [*nailgun-server* (:server context)
+            *nailgun-client-address* (:addr context)
+            *nailgun-client-port* (:port context)
+            *nailgun-command* (:cmd context)
+            *nailgun-args* (:args context)
+            *nailgun-env* (:env context)
+            *nailgun-directory* (:pwd context)
+            *nailgun-separator* (:sep context)]
+    (f *nailgun-args*)))
+
 (defn- dispatch
-  [cmd ctx]
-  ((or (get-in @dispatch-table [(keyword cmd) :fn])
-       (tools/error-nail (format "nail %s not found" cmd)))
-   ctx))
+  "Looks up the nail function from the dispatch table and calls it with the
+  whole context bound to dynamic vars."
+  [cmd context]
+  (bind-context (get-in @dispatch-table
+                        [(keyword cmd) :fn]
+                        (tools/error-nail (format "nail %s not found" cmd)))
+                context))
 
 (defn- nail-fn
   [c]
