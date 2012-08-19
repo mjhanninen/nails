@@ -165,7 +165,7 @@
             *nailgun-env* (:env context)
             *nailgun-directory* (:pwd context)
             *nailgun-separator* (:sep context)]
-    (f *nailgun-args*)))
+    (apply f *nailgun-args*)))
 
 (defn- dispatch
   "Looks up the nail function from the dispatch table and calls it with the
