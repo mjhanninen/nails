@@ -25,6 +25,11 @@
   (locking dispatch-table
     (swap! dispatch-table #(assoc % k {:fn f :desc desc}))))
 
+(defn has-nail
+  "Test does the dispatch table contain a Nail for `k`."
+  [k]
+  (boolean (@dispatch-table k)))
+
 (defn remove-nail
   [k]
   {:pre [(keyword? k)]}
